@@ -10,10 +10,11 @@ namespace StarterAssets
 		[Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
-		public bool jump;
 		public bool sprint;
+		public bool isHoldingGun;
+		public bool shoot;
 
-		[Header("Movement Settings")]
+        [Header("Movement Settings")]
 		public bool analogMovement;
 
 		[Header("Mouse Cursor Settings")]
@@ -34,12 +35,18 @@ namespace StarterAssets
 			}
 		}
 
-		public void OnJump(InputValue value)
+		public void OnHoldGun(InputValue value)
 		{
-			JumpInput(value.isPressed);
+            isHoldingGun = value.isPressed;
 		}
 
-		public void OnSprint(InputValue value)
+        public void OnShoot(InputValue value)
+        {
+            ShootInput(value.isPressed);
+        }
+
+
+        public void OnSprint(InputValue value)
 		{
 			SprintInput(value.isPressed);
 		}
@@ -56,12 +63,16 @@ namespace StarterAssets
 			look = newLookDirection;
 		}
 
-		public void JumpInput(bool newJumpState)
-		{
-			jump = newJumpState;
+		public void HoldingGunInPut(bool newHoldingGunState) { 
+			isHoldingGun = newHoldingGunState;
 		}
 
-		public void SprintInput(bool newSprintState)
+        public void ShootInput(bool newShootState)
+        {
+            shoot = newShootState;
+        }
+
+        public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
 		}
